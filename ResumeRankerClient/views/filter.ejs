@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- Checkbox CSS -->
+    <link href="css/checkboxes.css" rel="stylesheet">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+</head>
+
+<body ng-app="checkboxApp" ng-controller="checkboxController">
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/">
+                        RESUME RANKER
+                    </a>
+                </li>
+                <li>
+                    <a href="filter">RESUME FILTERING</a>
+                </li>
+                <li>
+                    <a href="#">DASHBOARDS</a>
+                </li>
+                <li>
+                    <a href="#">EMAIL</a>
+                </li>
+                <!--<li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>-->
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Filter Based on Keywords</h1>
+                        <p>You can select different categories like Tech Skills, GPA, Experience, Location, and so forth. Select keywords from our comprehensive list or give your own keywords. You shall get the list of relevant resumes.</p>
+                        <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    
+    
+<div class="container">
+    
+    <div class="row">
+    	<div class="col-md-4"><div class="well"><button type="button" class="btn btn-primary btn-block">Tech Skills</button></div></div>
+        <div class="col-md-4"><div class="well"><button type="button" class="btn btn-success btn-block">GPA</button></div></div>
+        <div class="col-md-4"><div class="well"><button type="button" class="btn btn-info btn-block">Experience</button></div></div>
+    </div>
+    
+    <div class="row" ng-show="skills">
+    
+	    <p ng-repeat="item in techSkills" class="item" id="{{item.skill}}">
+	    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
+	   
+	</div>
+
+	<button ng-click="search()">Search</button>
+    
+    {{data}}
+    {{data1}}
+
+	<div class="row" ng-show="resumeList">
+	
+		<table class="table table-striped">
+	    	<tbody>
+		      <tr ng-repeat="resume in filesList">
+		        <td>{{resume.Name}}</td>
+		        <td><button type="button" class="btn btn-default btn-block" ng-click="download(resume.Name)">Download</button></td>
+		      </tr>
+		    </tbody>
+	  	</table>    
+	  
+	</div>    
+    
+</div>
+    
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
+  var myApp = angular.module("checkboxApp", []);
+
+  myApp.controller('checkboxController', function($scope, $http, $window) {
+  
+  $scope.skills = true;
+  $scope.resumeList = false;
+  
+  $scope.isChecked = function(skill){
+      var match = false;
+      for(var i=0 ; i < $scope.data.length; i++) {
+        if($scope.data[i].skill == skill){
+          match = true;
+        }
+      }
+      return match;
+  };
+  
+  $scope.techSkills = [
+    {
+      "skill": "Java"
+    },
+    {
+      "skill": "Git"
+    },
+    {
+      "skill": "PHP"
+    },
+    {
+      "skill": "Python"
+    },
+    {
+      "skill": "Spring"
+    },
+    {
+      "skill": "Hibernate"
+    },
+    {
+      "skill": "REST"
+    },
+    {
+      "skill": "SOAP"
+    },
+    {
+      "skill": "XML"
+    },
+    {
+      "skill": "JSON"
+    },
+    {
+      "skill": "JavaScript"
+    },
+    {
+      "skill": "AngularJs"
+    },
+    {
+      "skill": "NodeJs"
+    },
+    {
+      "skill": "Express"
+    },
+    {
+      "skill": "Ruby"
+    },
+    {
+      "skill": "ReactJs"
+    },
+    {
+      "skill": "Ant"
+    },
+    {
+      "skill": "Maven"
+    }
+  ];
+    
+  $scope.data = [];
+  $scope.data1 = [];
+  
+  $scope.sync = function(bool, item){
+    if(bool){
+      // add item
+      $scope.data.push(item);
+    } else {
+      // remove item
+      for(var i=0 ; i < $scope.data.length; i++) {
+        if($scope.data[i].skill == item.skill){
+          $scope.data.splice(i,1);
+        }
+      }      
+    }
+  };
+  
+  $scope.search = function(){
+  	$scope.skills = false;
+    console.log("searching!!!");
+  	
+  	$scope.data1 = [];
+	for(var i in $scope.data) {
+	    if($scope.data.hasOwnProperty(i) && !isNaN(+i)) {
+	        $scope.data1[+i] = $scope.data[i].skill;
+	    }
+	}
+	
+	var keywords = {"skill": $scope.data1};
+  
+  	$scope.filesList = [];
+  			
+		$http.post("/SearchResume", keywords)
+		.success(function(data,status) {
+			if (status === 200)
+			{
+				console.log("Success returned from searchResume Function");
+				console.log(data);
+				console.log(status);
+				
+				var i = 0;
+				
+				for (i=0; i<data.files.length; i++){
+					var fileDetails = {};
+					fileDetails["Name"] = data.files[i];
+					$scope.filesList.push(fileDetails);
+				}
+				
+				$scope.resumeList = true;
+			}
+			else
+			{
+				console.log("Error returned from searchResume Function");
+			}
+		});
+  
+  };
+  
+  	$scope.download = function(Name) {
+		
+		var downloadURL = 'http://localhost:8080/Client1/DownloadFile?fileName=';
+		var fileName = Name;
+		
+		var finalDownloadURL = downloadURL.concat(fileName);
+		console.log(finalDownloadURL);
+		
+		$window.open(finalDownloadURL);
+		
+	};
+  
+});    
+    </script>
+
+</body>
+
+</html>
