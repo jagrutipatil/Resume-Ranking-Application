@@ -17,22 +17,92 @@ myApp.controller('filterController', function($scope, $http, $window) {
 
 	$scope.techSkills = [
 	                     {
+	                    	 "skill": "C"
+	                     },
+	                     {
+	                    	 "skill": "C++"
+	                     },
+	                     {
 	                    	 "skill": "Java"
+	                     },
+	                     {
+	                    	 "skill": "JavaScript"
+	                     },
+	                     {
+	                    	 "skill": "SQL"
+	                     },
+	                     {
+	                    	 "skill": "HTML"
+	                     },
+	                     {
+	                    	 "skill": "CSS"
+	                     },
+	                     {
+	                    	 "skill": "Node.js"
+	                     },
+	                     {
+	                    	 "skill": "Angular.js"
+	                     },
+	                     {
+	                    	 "skill": "Bootstrap"
+	                     },
+	                     {
+	                    	 "skill": "XML"
+	                     },
+	                     {
+	                    	 "skill": "Unix"
+	                     },
+	                     {
+	                    	 "skill": "Windows"
+	                     },
+	                     {
+	                    	 "skill": "Oracle"
+	                     },
+	                     {
+	                    	 "skill": "SQL Server"
+	                     },
+	                     {
+	                    	 "skill": "PostgreSQL"
+	                     },
+	                     {
+	                    	 "skill": "MongoDB"
+	                     },
+	                     {
+	                    	 "skill": "Eclipse"
+	                     }
+	                     ];
+
+	
+	$scope.techSkills1 = [
+	                     {
+	                    	 "skill": "SVN"
 	                     },
 	                     {
 	                    	 "skill": "Git"
 	                     },
 	                     {
-	                    	 "skill": "PHP"
+	                    	 "skill": "Ant"
 	                     },
 	                     {
-	                    	 "skill": "Python"
+	                    	 "skill": "JProfiler"
 	                     },
 	                     {
-	                    	 "skill": "Spring"
+	                    	 "skill": "Jenkins"
 	                     },
 	                     {
-	                    	 "skill": "Hibernate"
+	                    	 "skill": "VIM"
+	                     },
+	                     {
+	                    	 "skill": "JIRA"
+	                     },
+	                     {
+	                    	 "skill": "PowerBuilder"
+	                     },
+	                     {
+	                    	 "skill": "JSON"
+	                     },
+	                     {
+	                    	 "skill": "RabbitMQ"
 	                     },
 	                     {
 	                    	 "skill": "REST"
@@ -41,37 +111,142 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	                    	 "skill": "SOAP"
 	                     },
 	                     {
-	                    	 "skill": "XML"
+	                    	 "skill": "Redis"
 	                     },
 	                     {
-	                    	 "skill": "JSON"
+	                    	 "skill": "AWS"
 	                     },
 	                     {
-	                    	 "skill": "JavaScript"
+	                    	 "skill": "Heroku"
 	                     },
 	                     {
-	                    	 "skill": "AngularJs"
+	                    	 "skill": "Bluemix"
 	                     },
 	                     {
-	                    	 "skill": "NodeJs"
+	                    	 "skill": "Cloud9"
 	                     },
 	                     {
-	                    	 "skill": "Express"
-	                     },
-	                     {
-	                    	 "skill": "Ruby"
-	                     },
-	                     {
-	                    	 "skill": "ReactJs"
-	                     },
-	                     {
-	                    	 "skill": "Ant"
-	                     },
-	                     {
-	                    	 "skill": "Maven"
+	                    	 "skill": "Sublime"
 	                     }
 	                     ];
-
+	
+	
+	$scope.techSkills2 = [
+		                     {
+		                    	 "skill": "amCharts"
+		                     },
+		                     {
+		                    	 "skill": "Tomcat"
+		                     },
+		                     {
+		                    	 "skill": "Docker"
+		                     },
+		                     {
+		                    	 "skill": "JQuery"
+		                     },
+		                     {
+		                    	 "skill": "Spring"
+		                     },
+		                     {
+		                    	 "skill": "Hibernate"
+		                     },
+		                     {
+		                    	 "skill": "Struts"
+		                     },
+		                     {
+		                    	 "skill": "Ruby"
+		                     },
+		                     {
+		                    	 "skill": "Rails"
+		                     },
+		                     {
+		                    	 "skill": "Python"
+		                     },
+		                     {
+		                    	 "skill": "Netty"
+		                     },
+		                     {
+		                    	 "skill": "Open MPI"
+		                     },
+		                     {
+		                    	 "skill": "Virtualization"
+		                     },
+		                     {
+		                    	 "skill": "Linux"
+		                     },
+		                     {
+		                    	 "skill": "KVM"
+		                     },
+		                     {
+		                    	 "skill": "IOT"
+		                     },
+		                     {
+		                    	 "skill": "Big data"
+		                     },
+		                     {
+		                    	 "skill": "Kafka"
+		                     }
+		                     ];
+	
+	
+	$scope.techSkills3 = [
+		                     {
+		                    	 "skill": "spark"
+		                     },
+		                     {
+		                    	 "skill": "scala"
+		                     },
+		                     {
+		                    	 "skill": "Autocad"
+		                     },
+		                     {
+		                    	 "skill": "CAN"
+		                     },
+		                     {
+		                    	 "skill": "3d Drawing"
+		                     },
+		                     {
+		                    	 "skill": "Machine Learning"
+		                     },
+		                     {
+		                    	 "skill": "AI"
+		                     },
+		                     {
+		                    	 "skill": "NLP"
+		                     },
+		                     {
+		                    	 "skill": "Embedded"
+		                     },
+		                     {
+		                    	 "skill": "Backbone.js"
+		                     },
+		                     {
+		                    	 "skill": "ReactJS"
+		                     },
+		                     {
+		                    	 "skill": "Word"
+		                     },
+		                     {
+		                    	 "skill": "Excel"
+		                     },
+		                     {
+		                    	 "skill": "Powerpoint"
+		                     },
+		                     {
+		                    	 "skill": "Data Science"
+		                     },
+		                     {
+		                    	 "skill": "ORM"
+		                     },
+		                     {
+		                    	 "skill": "JAXB"
+		                     },
+		                     {
+		                    	 "skill": "Photoshop"
+		                     }
+		                     ];
+	
+	
 	$scope.data = [];
 	$scope.data1 = [];
 
@@ -88,12 +263,21 @@ myApp.controller('filterController', function($scope, $http, $window) {
 			}      
 		}
 	};
+	
+	$scope.appendKeyword = function(){
+		
+		var skillJson = {"skill": $scope.customKeyword};
+		//skillJson.skill = $scope.customKeyword;
+		$scope.data.push(skillJson);
+		//console.log("keywords: " + $scope.data1);
+		$scope.customKeyword = "";
+	};
 
 	$scope.search = function(){
 		$scope.skills = false;
 		console.log("searching!!!");
 
-		$scope.data1 = [];
+		//$scope.data1 = [];
 		for(var i in $scope.data) {
 			if($scope.data.hasOwnProperty(i) && !isNaN(+i)) {
 				$scope.data1[+i] = $scope.data[i].skill;

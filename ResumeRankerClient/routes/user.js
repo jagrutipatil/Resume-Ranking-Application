@@ -6,19 +6,19 @@ exports.login = function(req, res){
 	
 	var client = new Client();
 	
-	var loginData = {email: req.param('loginEmail'), password: req.param('loginPass')};
-	
 	var args = {
-		data: { "login": loginData },
+		data: {emailId: req.param('loginEmail'), password: req.param('loginPass')},
 		headers: { "Content-Type": "application/json" }
 	};
 	 
-	client.post("http://localhost:8080/Client1/login", args, function (data, response) {
+	client.post("http://localhost:8080/ResumeRankerServer/LoginServlet", args, function (data, response) {
  
-		/*console.log("POST request from 'SearchResume' working fine...!!!");
-		console.log("data " + JSON.stringify(data));
-		res.end(JSON.stringify(data));*/
-		
+		if (response.statusCode === 200){
+			res.end("SUCCESS");
+		}
+		else{
+			res.end("NO SUCCESS");
+		}
 	});
 	
 };
@@ -29,16 +29,19 @@ exports.register = function(req, res){
 	
 	var client = new Client();
 	
-	//var registerData = {emailId: req.param('registerEmail'), password: req.param('registerPass')};
-	
 	var args = {
 		data: {emailId: req.param('registerEmail'), password: req.param('registerPass')},
 		headers: { "Content-Type": "application/json" }
 	};
 	 
-	client.post("http://localhost:8080/Client1/RegisterServlet", args, function (data, response) {
+	client.post("http://localhost:8080/ResumeRankerServer/RegisterServlet", args, function (data, response) {
  
-		console.log("Response from RegisterServlet: " + response);
+		if (response.statusCode === 200){
+			res.end("SUCCESS");
+		}
+		else{
+			res.end("NO SUCCESS");
+		}
 		
 	});
 	

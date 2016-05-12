@@ -96,15 +96,45 @@
     
     <div class="row" ng-show="skills">
     
-	    <p ng-repeat="item in techSkills" class="item" id="{{item.skill}}">
-	    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
+    	<div class="col-md-3">
+     	   <p ng-repeat="item in techSkills" class="item" id="{{item.skill}}">
+		    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
+	    </div>
 	   
+	   <div class="col-md-3">
+     	   <p ng-repeat="item in techSkills1" class="item" id="{{item.skill}}">
+		    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
+	    </div>
+	    
+	    <div class="col-md-3">
+     	   <p ng-repeat="item in techSkills2" class="item" id="{{item.skill}}">
+		    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
+	    </div>
+	    
+	    <div class="col-md-3">
+     	   <p ng-repeat="item in techSkills3" class="item" id="{{item.skill}}">
+		    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
+	    </div>
+	    
+	</div>
+	
+	<div class="row">
+		<div class="col-md-3">
+			<input type="text" placeholder="Single Custom Keyword" ng-model="customKeyword">
+			<button ng-click="appendKeyword()">Add to list</button>
+		</div>
 	</div>
 
-	<button ng-click="search()">Search</button>
+	<br> 
+	
+	<div class="row">
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary btn-block" ng-click="search()">Search</button>
+		</div>
+	</div>
     
-    {{data}}
-    {{data1}}
+    <!--{{data}}
+    {{data1}}-->
 
 	<div class="row" ng-show="resumeList">
 	
