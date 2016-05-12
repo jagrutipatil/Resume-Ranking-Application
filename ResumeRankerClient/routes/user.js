@@ -29,18 +29,16 @@ exports.register = function(req, res){
 	
 	var client = new Client();
 	
-	var registerData = {email: req.param('registerEmail'), password: req.param('registerPass')};
+	//var registerData = {emailId: req.param('registerEmail'), password: req.param('registerPass')};
 	
 	var args = {
-		data: { "register": registerData },
+		data: {emailId: req.param('registerEmail'), password: req.param('registerPass')},
 		headers: { "Content-Type": "application/json" }
 	};
 	 
-	client.post("http://localhost:8080/Client1/register", args, function (data, response) {
+	client.post("http://localhost:8080/Client1/RegisterServlet", args, function (data, response) {
  
-		/*console.log("POST request from 'SearchResume' working fine...!!!");
-		console.log("data " + JSON.stringify(data));
-		res.end(JSON.stringify(data));*/
+		console.log("Response from RegisterServlet: " + response);
 		
 	});
 	

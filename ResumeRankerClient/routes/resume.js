@@ -14,7 +14,7 @@ exports.SearchResume = function(req, res){
 		headers: { "Content-Type": "application/json" }
 	};
 	 
-	client.post("http://localhost:8080/Client1/RenderClient", args, function (data, response) {
+	client.post("http://localhost:8080/ResumeRankerServer/SearchResumes", args, function (data, response) {
  
 		console.log("POST request from 'SearchResume' working fine...!!!");
 		console.log("data " + JSON.stringify(data));

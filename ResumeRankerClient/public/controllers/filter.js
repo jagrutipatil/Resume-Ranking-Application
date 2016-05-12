@@ -132,7 +132,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 
 	$scope.download = function(Name) {
 
-		var downloadURL = 'http://localhost:8080/Client1/DownloadFile?fileName=';
+		var downloadURL = 'http://localhost:8080/ResumeRankerServer/DownloadResume?fileName=';
 		var fileName = Name;
 
 		var finalDownloadURL = downloadURL.concat(fileName);
