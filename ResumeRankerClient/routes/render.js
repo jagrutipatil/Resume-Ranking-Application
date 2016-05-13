@@ -30,3 +30,15 @@ exports.filter = function(req, res){
 	}
 	
 };
+
+exports.configuration = function(req, res){
+	console.log("configuration working!!!");
+	
+	if (req.session.emailId){
+		res.render("configuration");
+	}
+	else{
+		res.render("login");
+	}
+	
+};

@@ -73,10 +73,6 @@ public class SearchResumes extends HttpServlet {
         
         System.out.println("Requested String: " + json);
         
-        //JSONObject jsonObj = new JSONObject(json);
-        
-        //System.out.println("Converted jsonobject: " + jsonObj);
-        
         // 2. initiate jackson mapper
         ObjectMapper mapper = new ObjectMapper();
         

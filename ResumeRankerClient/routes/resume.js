@@ -51,3 +51,25 @@ exports.SaveProfile = function(req, res){
 	});
 	
 };
+
+exports.ConfigurationList = function(req, res){
+	  
+	console.log("Entered 'ConfigurationList' function on Node Server..");
+	
+	var client = new Client();
+	
+	// set content-type header and data as json in args parameter 
+	var args = {
+		data: { "emailId": req.session.emailId},
+		headers: { "Content-Type": "application/json" }
+	};
+	 
+	client.post("http://localhost:8080/ResumeRankerServer/GetConfiguration", args, function (data, response) {
+ 
+		console.log("POST request from 'ConfigurationList' working fine...!!!");
+		console.log("Configuration List Data " + JSON.stringify(data));
+		res.end(JSON.stringify(data));
+		
+	});
+	
+};

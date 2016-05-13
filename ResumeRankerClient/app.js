@@ -45,6 +45,7 @@ app.get('/', render.index);
 app.get('/home', render.home);
 app.get('/login', render.login);
 app.get('/filter', render.filter);
+app.get('/configuration', render.configuration);
 app.get('/logout', user.logout);
 
 /************* POST REQUESTS **************/
@@ -53,6 +54,7 @@ app.post('/login', user.login);
 app.post('/register', user.register);
 app.post('/SearchResume', resume.SearchResume);
 app.post('/SaveProfile', resume.SaveProfile);
+app.post('/ConfigurationList', resume.ConfigurationList);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

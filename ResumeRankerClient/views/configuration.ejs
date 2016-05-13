@@ -31,7 +31,7 @@
 
 </head>
 
-<body ng-app="filterApp" ng-controller="filterController">
+<body ng-app="configurationApp" ng-controller="configurationController">
 
     <div id="wrapper">
 
@@ -79,8 +79,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Filter Based on Keywords</h1>
-                        <p>You can select different categories like Tech Skills, GPA, Experience, Location, and so forth. Select keywords from our comprehensive list or give your own keywords. You shall get the list of relevant resumes!!!</p>
+                        <h1>Your Previously Saved Job Profile Configurations</h1>
+                        <p>We have made it simple for you! Choose one of the below configurations and search the relevant resumes!!!</p>
                         <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
                     </div>
                 </div>
@@ -94,82 +94,22 @@
     
 <div class="container">
     
-    <div ng-show="checkboxes">
-    
-	    <div class="row">
-	    	<div class="col-md-3">
-	    		Job ID#: <input type="text" placeholder="Job Id" ng-model="jobId">
-	    		<br><br>
-	    		Job Title: <input type="text" placeholder="Job Title" ng-model="jobTitle">
-	    	</div>
-	    	
-	    	<div class="col-md-3">
-	    		<button type="button" class="btn btn-primary btn-block" ng-click="saveConfiguration()">Save</button>
-	    		<br>
-	    		<b>{{saveStatus}}</b>
-	    	</div>
-	    </div>
-	    
-	    <div class="row">
-	    	<div class="col-md-12">
-	    		<br>
-	    		Keywords: {{selectedKeywords}}
-	    	</div>
-	    </div>
-	    
-	    <br><br>
-	    
-	    <div class="row">
-	    	<div class="col-md-4"><div class="well"><button type="button" class="btn btn-primary btn-block">Tech Skills</button></div></div>
-	        <div class="col-md-4"><div class="well"><button type="button" class="btn btn-success btn-block">GPA</button></div></div>
-	        <div class="col-md-4"><div class="well"><button type="button" class="btn btn-info btn-block">Experience</button></div></div>
-	    </div>
-	    
-	    <br>
-	    
-	    <div class="row" ng-show="skills">
-	    
-	    	<div class="col-md-3">
-	     	   <p ng-repeat="item in techSkills" class="item" id="{{item.skill}}">
-			    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
-		    </div>
-		   
-		   <div class="col-md-3">
-	     	   <p ng-repeat="item in techSkills1" class="item" id="{{item.skill}}">
-			    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
-		    </div>
-		    
-		    <div class="col-md-3">
-	     	   <p ng-repeat="item in techSkills2" class="item" id="{{item.skill}}">
-			    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
-		    </div>
-		    
-		    <div class="col-md-3">
-	     	   <p ng-repeat="item in techSkills3" class="item" id="{{item.skill}}">
-			    	<input type="checkbox" ng-change="sync(bool, item)" ng-model="bool" ng-checked="isChecked(item.skill)">{{item.skill}}
-		    </div>
-		    
-		</div>
-		
-		<div class="row">
-			<div class="col-md-3">
-				<input type="text" placeholder="Single Custom Keyword" ng-model="customKeyword">
-				<button ng-click="appendKeyword()">Add to list</button>
-			</div>
-		</div>
+	<div class="row" ng-show="configList">
 	
-		<br> 
-		
-		<div class="row">
-			<div class="col-md-3">
-				<button type="button" class="btn btn-success btn-block" ng-click="search()">Search</button>
-			</div>
-		</div>
-	    
-	    <!--{{data}}
-	    {{data1}}-->
+		<table class="table table-striped">
+	    	<tbody>
+		      <tr ng-repeat="config in configDetailsList">
+		        <td>{{config.Id}}</td>
+		        <td>{{config.Title}}</td>
+		        <td>{{config.Keywords}}</td>
+		        <td><button type="button" class="btn btn-default btn-block" ng-click="search(config.Keywords)">Search</button></td>
+		      </tr>
+		    </tbody>
+	  	</table>    
+	  
 	</div>
 	
+
 	<div class="row" ng-show="resumeList">
 	
 		<table class="table table-striped">
@@ -181,7 +121,7 @@
 		    </tbody>
 	  	</table>    
 	  
-	</div>    
+	</div>
     
 </div>
     
@@ -200,7 +140,7 @@
     });
     </script>
     
-    <script type="text/javascript" src="../controllers/filter.js"></script>  
+    <script type="text/javascript" src="../controllers/configuration.js"></script>  
     
  </body>
 
