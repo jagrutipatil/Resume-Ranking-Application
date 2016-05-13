@@ -60,15 +60,6 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	                     },
 	                     {
 	                    	 "skill": "SQL Server"
-	                     },
-	                     {
-	                    	 "skill": "PostgreSQL"
-	                     },
-	                     {
-	                    	 "skill": "MongoDB"
-	                     },
-	                     {
-	                    	 "skill": "Eclipse"
 	                     }
 	                     ];
 
@@ -118,15 +109,6 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	                     },
 	                     {
 	                    	 "skill": "Heroku"
-	                     },
-	                     {
-	                    	 "skill": "Bluemix"
-	                     },
-	                     {
-	                    	 "skill": "Cloud9"
-	                     },
-	                     {
-	                    	 "skill": "Sublime"
 	                     }
 	                     ];
 	
@@ -176,15 +158,6 @@ myApp.controller('filterController', function($scope, $http, $window) {
 		                     },
 		                     {
 		                    	 "skill": "KVM"
-		                     },
-		                     {
-		                    	 "skill": "IOT"
-		                     },
-		                     {
-		                    	 "skill": "Big data"
-		                     },
-		                     {
-		                    	 "skill": "Kafka"
 		                     }
 		                     ];
 	
@@ -234,34 +207,30 @@ myApp.controller('filterController', function($scope, $http, $window) {
 		                     },
 		                     {
 		                    	 "skill": "Data Science"
-		                     },
-		                     {
-		                    	 "skill": "ORM"
-		                     },
-		                     {
-		                    	 "skill": "JAXB"
-		                     },
-		                     {
-		                    	 "skill": "Photoshop"
 		                     }
 		                     ];
 	
 	
 	$scope.data = [];
 	$scope.data1 = [];
+	$scope.selectedKeywords = [];
 
 	$scope.sync = function(bool, item){
 		if(bool){
 			// add item
 			$scope.data.push(item);
+			$scope.selectedKeywords.push(item.skill);
 		} else {
 			// remove item
 			for(var i=0 ; i < $scope.data.length; i++) {
 				if($scope.data[i].skill == item.skill){
 					$scope.data.splice(i,1);
+					$scope.selectedKeywords.splice(i,1);
 				}
 			}      
 		}
+		
+		
 	};
 	
 	$scope.appendKeyword = function(){
@@ -269,6 +238,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 		var skillJson = {"skill": $scope.customKeyword};
 		//skillJson.skill = $scope.customKeyword;
 		$scope.data.push(skillJson);
+		$scope.selectedKeywords.push(skillJson.skill);
 		//console.log("keywords: " + $scope.data1);
 		$scope.customKeyword = "";
 	};
@@ -325,5 +295,36 @@ myApp.controller('filterController', function($scope, $http, $window) {
 		$window.open(finalDownloadURL);
 
 	};
+	
+	$scope.saveConfiguration = function(Name) {
+		
+		var CommaFormattedKeywords = "";
+		
+		for(var i=0 ; i < $scope.selectedKeywords.length; i++) {
+			
+			if (i!==$scope.selectedKeywords.length-1){
+				CommaFormattedKeywords = CommaFormattedKeywords + $scope.selectedKeywords[i] + ",";
+			}
+			else{
+				CommaFormattedKeywords = CommaFormattedKeywords + $scope.selectedKeywords[i];
+			}
+		}
+		
+		var configurationDetails = {"jobId": $scope.jobId, "jobTitle": $scope.jobTitle, "keywords": CommaFormattedKeywords};
+
+		$http.post("/SaveProfile", configurationDetails)
+		.success(function(data,status) {
+			if (data === "SUCCESS")
+			{
+				console.log("Success returned from SaveProfile Function");
+			}
+			else
+			{
+				console.log("Error returned from SaveProfile Function");
+			}
+		});
+		
+	};
+	
 
 });

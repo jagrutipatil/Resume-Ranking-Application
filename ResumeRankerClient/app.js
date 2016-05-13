@@ -9,9 +9,19 @@ var express = require('express')
   , render = require('./routes/render')
   , resume = require('./routes/resume')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  //Importing the 'client-sessions' module
+  , session = require('client-sessions');
 
 var app = express();
+
+//configure the sessions with our application
+app.use(session({   
+	  
+	cookieName: 'session',    
+	secret: 'Resume_Ranker',    
+	duration: 30 * 60 * 1000,    
+	activeDuration: 5 * 60 * 1000,  }));
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -35,13 +45,14 @@ app.get('/', render.index);
 app.get('/home', render.home);
 app.get('/login', render.login);
 app.get('/filter', render.filter);
-
+app.get('/logout', user.logout);
 
 /************* POST REQUESTS **************/
 
 app.post('/login', user.login);
 app.post('/register', user.register);
 app.post('/SearchResume', resume.SearchResume);
+app.post('/SaveProfile', resume.SaveProfile);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

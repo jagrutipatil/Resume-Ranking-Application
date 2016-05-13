@@ -23,3 +23,24 @@ exports.SearchResume = function(req, res){
 	});
 	
 };
+
+exports.SaveProfile = function(req, res){
+	  
+	console.log("Entered 'SaveProfile' function on Node Server..");
+	
+	var client = new Client();
+	
+	// set content-type header and data as json in args parameter 
+	var args = {
+		data: { "jobId": req.param("jobId"), "jobTitle": req.param("jobTitle"), "keywords": req.param("keywords"), "emailId": req.session.emailId},
+		headers: { "Content-Type": "application/json" }
+	};
+	 
+	client.post("http://localhost:8080/ResumeRankerServer/SaveConfiguration", args, function (data, response) {
+ 
+		console.log("POST request from 'SaveProfile' working fine...!!!");
+		console.log("Response: " + response.statusCode);
+		
+	});
+	
+};

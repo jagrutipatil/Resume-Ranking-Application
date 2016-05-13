@@ -52,6 +52,9 @@
                 <li>
                     <a href="#">EMAIL</a>
                 </li>
+                <li>
+                    <a href="logout">LOGOUT</a>
+                </li>
                 <!--<li>
                     <a href="#">Events</a>
                 </li>
@@ -89,10 +92,35 @@
 <div class="container">
     
     <div class="row">
+    	<div class="col-md-3">
+    		Job ID#: <input type="text" placeholder="Job Id" ng-model="jobId">
+    		<br><br>
+    		Job Title: <input type="text" placeholder="Job Title" ng-model="jobTitle">
+    	</div>
+    	
+    	<div class="col-md-3">
+    		<button type="button" class="btn btn-primary btn-block" ng-click="saveConfiguration()">Save</button>
+    		<br><br>
+    		{{saveStatus}}
+    	</div>
+    </div>
+    
+    <div class="row">
+    	<div class="col-md-12">
+    		<br>
+    		Keywords: {{selectedKeywords}}
+    	</div>
+    </div>
+    
+    <br><br>
+    
+    <div class="row">
     	<div class="col-md-4"><div class="well"><button type="button" class="btn btn-primary btn-block">Tech Skills</button></div></div>
         <div class="col-md-4"><div class="well"><button type="button" class="btn btn-success btn-block">GPA</button></div></div>
         <div class="col-md-4"><div class="well"><button type="button" class="btn btn-info btn-block">Experience</button></div></div>
     </div>
+    
+    <br>
     
     <div class="row" ng-show="skills">
     
@@ -129,7 +157,7 @@
 	
 	<div class="row">
 		<div class="col-md-3">
-			<button type="button" class="btn btn-primary btn-block" ng-click="search()">Search</button>
+			<button type="button" class="btn btn-success btn-block" ng-click="search()">Search</button>
 		</div>
 	</div>
     

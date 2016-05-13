@@ -5,7 +5,13 @@ exports.index = function(req, res){
 
 exports.home = function(req, res){
 	console.log("Home working!!!");
-	res.render("home");
+	
+	if (req.session.emailId){
+		res.render("home");
+	}
+	else{
+		res.render("login");
+	}
 };
 
 exports.login = function(req, res){
@@ -15,5 +21,12 @@ exports.login = function(req, res){
 
 exports.filter = function(req, res){
 	console.log("Filter working!!!");
-	res.render("filter");
+	
+	if (req.session.emailId){
+		res.render("filter");
+	}
+	else{
+		res.render("login");
+	}
+	
 };

@@ -14,6 +14,7 @@ exports.login = function(req, res){
 	client.post("http://localhost:8080/ResumeRankerServer/LoginServlet", args, function (data, response) {
  
 		if (response.statusCode === 200){
+			req.session.emailId = req.param('loginEmail');
 			res.end("SUCCESS");
 		}
 		else{
@@ -21,6 +22,16 @@ exports.login = function(req, res){
 		}
 	});
 	
+};
+
+
+exports.logout = function(req, res){
+	  
+	console.log("Entered 'logout' function on Node Server..");
+	
+	req.session.destroy();
+	
+	res.render("index");
 };
 
 exports.register = function(req, res){
@@ -37,6 +48,7 @@ exports.register = function(req, res){
 	client.post("http://localhost:8080/ResumeRankerServer/RegisterServlet", args, function (data, response) {
  
 		if (response.statusCode === 200){
+			req.session.emailId = req.param('registerEmail');
 			res.end("SUCCESS");
 		}
 		else{
