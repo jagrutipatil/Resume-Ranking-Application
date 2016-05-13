@@ -61,7 +61,7 @@ public class SearchResumes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-System.out.println("POST request working...");
+		System.out.println("POST request working...");
 		
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));

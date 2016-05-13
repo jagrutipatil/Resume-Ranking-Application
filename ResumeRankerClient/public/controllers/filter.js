@@ -4,7 +4,8 @@ myApp.controller('filterController', function($scope, $http, $window) {
 
 	$scope.skills = true;
 	$scope.resumeList = false;
-
+	$scope.checkboxes = true;
+	
 	$scope.isChecked = function(skill){
 		var match = false;
 		for(var i=0 ; i < $scope.data.length; i++) {
@@ -275,6 +276,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 				}
 
 				$scope.resumeList = true;
+				$scope.checkboxes = false;
 			}
 			else
 			{
@@ -317,10 +319,12 @@ myApp.controller('filterController', function($scope, $http, $window) {
 			if (data === "SUCCESS")
 			{
 				console.log("Success returned from SaveProfile Function");
+				$scope.saveStatus = "Configuration saved successfully!!!";
 			}
 			else
 			{
 				console.log("Error returned from SaveProfile Function");
+				$scope.saveStatus = "Problem in saving configuration!!!";
 			}
 		});
 		

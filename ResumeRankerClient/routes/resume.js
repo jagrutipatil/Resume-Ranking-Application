@@ -41,6 +41,13 @@ exports.SaveProfile = function(req, res){
 		console.log("POST request from 'SaveProfile' working fine...!!!");
 		console.log("Response: " + response.statusCode);
 		
+		if (response.statusCode){
+			res.end("SUCCESS");
+		}
+		else{
+			res.end("NO SUCCESS");
+		}
+		
 	});
 	
 };
