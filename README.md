@@ -1,12 +1,15 @@
 # Resume-Ranking-Service
 
-This is a web application (Resume Ranker) specially useful for recruiters. Many times, the recruiter has to scan through all the resume present in the system manually. This manual process is very time consuming. <br/> Also, the 
+This is a web application (Resume Ranker) specially useful for recruiters. Many times, the recruiter has to scan through all the resume present in the system manually. This manual process is very time consuming. Also, the 
 potential resume could be missed while manually looking at the resumes.<br/>
 
-Using "Resume Ranker", recruiters can save their time drastically. They just have to tell the applicaiton, what keywords they are looking for, and the application will display all the relevant resumes based on keywords. <br>
-The user can access this web app from any workstation and can download the resume to his local workstation as well.<br/>
+Using "Resume Ranker", recruiters can save their time drastically. They just have to tell the applicaiton, what keywords they are looking for, and the application will display all the relevant resumes based on keywords. The user 
+can access this web app from any workstation and can download the resume to his local workstation as well.<br/>
 
 Apache Lucene is used to filter resumes based on keywords. It uses TF-IDF algorithm to rank the resumes.<br/>
+
+All this resume filtering is happening in real-time. Every resume is fairly considered. There is a java watch service which continuously polls or monitors a directory for any addition of new resume in the system. If this newly 
+added resume is relevant, then it will be picked up by the application immediately.<br><br>
 
 Technology Stack: <br/>
 1. Java<br/>
