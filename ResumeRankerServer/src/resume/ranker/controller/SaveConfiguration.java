@@ -44,7 +44,7 @@ public class SaveConfiguration extends HttpServlet {
 		String inputrequest = ResumeRankerUtils.inputstreamToJSON(request.getInputStream());
 		System.out.println(String.format(POSTRequest, "RegisterServlet", inputrequest));
 
-		JobProfileConfiguration configurationDetails = mapper.readValue(json, JobProfileConfiguration.class);
+		JobProfileConfiguration configurationDetails = mapper.readValue(inputrequest, JobProfileConfiguration.class);
 
 		SaveConfigurationService saveConfigurationService = new SaveConfigurationService();
 		boolean result = saveConfigurationService.save(configurationDetails);
