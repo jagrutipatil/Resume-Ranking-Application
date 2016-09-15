@@ -162,6 +162,21 @@ class QueryFormat{
 		return formattedQuery;
 	}
 	
+	public String orQuery(String[] query){
+		
+		String formattedQuery = "";
+		
+		for (int i=0; i<query.length; i++){
+			if (i!=query.length-1)
+				formattedQuery = formattedQuery + query[i] + " OR ";
+			else
+				formattedQuery = formattedQuery + query[i];
+		}
+		
+		System.out.println("Formatted Query: " + formattedQuery);
+		return formattedQuery;
+	}
+	
 }
 
 class LuceneSearchDocs{
@@ -196,7 +211,7 @@ class LuceneSearchDocs{
 	
 	
 	public Map<String, Object> searchParams(SearchParameters search) throws IOException{
-		String index = "C:\\Users\\prajwalk\\Desktop\\SJSU - Fall2015\\Resume Ranking Project\\IndexD";
+		String index = "/home/jagruti/workspace/Resume-Ranking-Application/indexedResume/";
         String field = "contents";
         String queries = null;
         int repeat = 0;
@@ -219,12 +234,11 @@ class LuceneSearchDocs{
         
         String[] line = search.getSkill(); 
         QueryFormat obj = new QueryFormat();
-        String formattedQuery = obj.andQuery(line);
+        String formattedQuery = obj.orQuery(line);
         Query query = null;
 		try {
 			query = parser.parse(formattedQuery);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
