@@ -74,6 +74,17 @@ myApp.controller('filterController', function($scope, $http, $window) {
 		
 	};
 	
+	$scope.download = function(Name) {
+
+		var downloadURL = 'http://localhost:8080/ResumeRankerServer/DownloadResume?fileName=';
+		var fileName = Name;
+
+		var finalDownloadURL = downloadURL.concat(fileName);
+		console.log(finalDownloadURL);
+
+		$window.open(finalDownloadURL);
+
+	};
 	
 	$scope.search = function(){
 		//$scope.skills = false;
