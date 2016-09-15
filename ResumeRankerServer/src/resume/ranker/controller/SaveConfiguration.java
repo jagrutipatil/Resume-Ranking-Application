@@ -12,63 +12,47 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import resume.ranker.files.util.ResumeRankerUtils;
 import resume.ranker.model.JobProfileConfiguration;
 import resume.ranker.service.LoginService;
 import resume.ranker.service.SaveConfigurationService;
 
 /**
- * Servlet implementation class SaveConfiguration
+ * TODO Add Documentation
  */
 @WebServlet("/SaveConfiguration")
 public class SaveConfiguration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SaveConfiguration() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	
+	private ObjectMapper mapper = new ObjectMapper();
+	private final String POSTRequest = "POST [%s] [%s]";
+	LoginService loginService = new LoginService();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	public SaveConfiguration() {
+		super();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		System.out.println("POST request of SaveConfiguration working...");
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-        String json = "";
-        if(br != null){
-        	System.out.println("Inside IF");
-            json = br.readLine();
-        }
-        
-        System.out.println("Requested String: " + json);
-        
-        ObjectMapper mapper = new ObjectMapper();
-        JobProfileConfiguration configurationDetails = mapper.readValue(json, JobProfileConfiguration.class);
-		
-        SaveConfigurationService saveConfigurationService = new SaveConfigurationService();
-        boolean result = saveConfigurationService.save(configurationDetails);   
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
 
-        System.out.println("Save Configuration Result: " + result);
-        
-        if (result) 
-        	response.setStatus(HttpServletResponse.SC_OK);
-        else
-        	response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String inputrequest = ResumeRankerUtils.inputstreamToJSON(request.getInputStream());
+		System.out.println(String.format(POSTRequest, "RegisterServlet", inputrequest));
+
+		JobProfileConfiguration configurationDetails = mapper.readValue(json, JobProfileConfiguration.class);
+
+		SaveConfigurationService saveConfigurationService = new SaveConfigurationService();
+		boolean result = saveConfigurationService.save(configurationDetails);
+
+		if (result)
+			response.setStatus(HttpServletResponse.SC_OK);
+		else
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 	}
 
 }

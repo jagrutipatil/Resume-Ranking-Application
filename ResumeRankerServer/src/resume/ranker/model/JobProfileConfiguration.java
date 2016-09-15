@@ -1,13 +1,11 @@
 package resume.ranker.model;
 
-import java.util.Arrays;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="JOB_PROFILE_CONFIGURATION")
+@Table(name = "JOB_PROFILE_CONFIGURATION")
 public class JobProfileConfiguration {
 
 	@Id
@@ -15,12 +13,9 @@ public class JobProfileConfiguration {
 	private String jobTitle;
 	private String keywords;
 	private String emailId;
-	
-	
-	
+
 	public JobProfileConfiguration() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public JobProfileConfiguration(String jobId, String jobTitle, String keywords, String emailId) {
@@ -65,12 +60,8 @@ public class JobProfileConfiguration {
 
 	@Override
 	public String toString() {
-		return "JobProfileConfiguration [jobId=" + jobId + ", jobTitle=" + jobTitle + ", keywords="
-				+ keywords + ", emailId=" + emailId + "]";
+		return "JobProfileConfiguration [jobId=" + jobId + ", jobTitle=" + jobTitle + ", keywords=" + keywords
+				+ ", emailId=" + emailId + "]";
 	}
-	
-		
-	
-	
-	
+
 }

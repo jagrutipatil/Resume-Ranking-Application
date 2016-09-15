@@ -12,48 +12,46 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import resume.ranker.files.util.ResumeRankerUtils;
 import resume.ranker.model.User;
+import resume.ranker.service.LoginService;
 import resume.ranker.service.RegisterService;
 
 /**
- * Servlet implementation class RegisterServlet
+ * TODO Add documentation
  */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public RegisterServlet() {
-        super();
-    }
+	
+	private ObjectMapper mapper = new ObjectMapper();
+	private final String POSTRequest = "POST [%s] [%s]";
+	LoginService loginService = new LoginService();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	public RegisterServlet() {
+		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("POST request of RegisterServlet working...");
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-        String json = "";
-        if(br != null){
-        	System.out.println("Inside IF");
-            json = br.readLine();
-        }
-        
-        System.out.println("Requested String: " + json);
-        
-        ObjectMapper mapper = new ObjectMapper();
-        User newUserDetails = mapper.readValue(json, User.class);
-		
-        User newUserCreation = new User(newUserDetails.getEmailId(), newUserDetails.getPassword());
-        
-        RegisterService registerService = new RegisterService();
-        boolean result = registerService.register(newUserCreation);   
-
-        if (result)
-        	response.setStatus(HttpServletResponse.SC_OK);
-		
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String inputrequest = ResumeRankerUtils.inputstreamToJSON(request.getInputStream());
+		System.out.println(String.format(POSTRequest, "RegisterServlet", inputrequest));
+
+		User newUserDetails = mapper.readValue(inputrequest, User.class);
+
+		User newUserCreation = new User(newUserDetails.getEmailId(), newUserDetails.getPassword());
+
+		RegisterService registerService = new RegisterService();
+		boolean result = registerService.register(newUserCreation);
+
+		if (result)
+			response.setStatus(HttpServletResponse.SC_OK);
+	}
 }

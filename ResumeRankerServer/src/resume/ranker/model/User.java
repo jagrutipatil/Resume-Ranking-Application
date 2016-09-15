@@ -5,13 +5,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER_INFO")
+@Table(name = "USER_INFO")
 public class User {
 
 	@Id
 	private String emailId;
 	private String password;
-	
+
 	public User() {
 	}
 
@@ -24,15 +24,15 @@ public class User {
 	public String getEmailId() {
 		return emailId;
 	}
-	
+
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -41,5 +41,5 @@ public class User {
 	public String toString() {
 		return "User [emailId=" + emailId + ", password=" + password + "]";
 	}
-	
+
 }
