@@ -2,7 +2,7 @@ var Client = require('node-rest-client').Client;
 
 exports.login = function(req, res){
 	  
-	console.log("Entered 'login' function on Node Server..");
+	console.log("Starting login on webserver..");
 	
 	var client = new Client();
 	
@@ -15,6 +15,7 @@ exports.login = function(req, res){
  
 		if (response.statusCode === 200){
 			req.session.emailId = req.param('loginEmail');
+			console.log("success");
 			res.end("SUCCESS");
 		}
 		else{

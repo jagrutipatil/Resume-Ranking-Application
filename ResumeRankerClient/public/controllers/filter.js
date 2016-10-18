@@ -2,7 +2,7 @@ var myApp = angular.module("filterApp", []);
 
 myApp.controller('filterController', function($scope, $http, $window) {
 
-	$scope.analysisSoftware = ["ANSYS", "COSMOS", "Flottem", "Fluent", "ICEPAK"];
+	$scope.analysisSoftware = ["ANSYS", "COSMOS", "Flottem", "Fluent", "ICEPAK"];	
 	$scope.cad = ["AutoCad", "Creo", "ProE", "Solidworks"];
 	$scope.cloudTechnologies = ["AWS", "Bluemix", "Cloud9", "Heroku"];
 	$scope.databases = ["Cassandra", "CouchDB", "DB2", "MongoDB", "MySQL", "Oracle", "PostgreSQL", "Redis", "Spanner", "Vertica"];
@@ -12,7 +12,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	$scope.programmingLang = ["C++", "C#", "Java", "Pyhton", "Ruby", "Scala", "SQL"];
 	$scope.tools = ["Ant", "Git", "Jenkins", "JIRA", "JProfiler", "SVN"];
 	$scope.webDevelopment = ["amCharts", "Angular.js", "Backbone.js", "Bootstrap", "CSS", "Hibernate", "HTML", "JavaScript", "JSON", "JQuery", "Node.js", "PHP", "Rails", "REST", "ReactJS", "SOAP", "Spring", "Struts", "Tomcat", "XML"];
-	
+	$scope.previousEmployer = ["Google", "Apple", "Facebook", "Amazon", "Uber"];
 	$scope.selected = [];
 	
 	$scope.categories = true;

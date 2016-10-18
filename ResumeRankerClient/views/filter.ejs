@@ -129,13 +129,16 @@
         </div>
 	    
 	    <div class="row" ng-show="categories">
-	    	<div class="col-md-3"><div class="well"><button type="button" class="btn btn-primary btn-block">Tech Skills</button></div></div>
-	        <!--<div class="col-md-4"><div class="well"><button type="button" class="btn btn-success btn-block">GPA</button></div></div>
-	        <div class="col-md-4"><div class="well"><button type="button" class="btn btn-info btn-block">Experience</button></div></div>-->
+	    	<div class="col-md-4"><div class="well"><button type="button" class="btn btn-primary btn-block">Tech Skills</button></div></div>
+	        
+            <div class="col-md-4"><div class="well"><button type="button" class="btn btn-success btn-block">Previous Employer</button></div></div>
+            
+	        <!--div class="col-md-4"><div class="well"><button type="button" class="btn btn-info btn-block">University</button></div></div-->
 	    </div>
 	    
 	    <div class="row" ng-show="skills">
-        <div class="col-sm-3 col-md-3">
+        <!-- Tech Skills START-->    
+        <div class="col-sm-4 col-md-4">
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -152,28 +155,7 @@
     								<td>
     									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
     								</td>
-    							</tr>
-  								
-                                <!--<tr>
-                                    <td>
-                                        <input name="AutoCad" type="checkbox" ng-click="getRow(this)"> AutoCad
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" onclick="getRow(this)"> ProE
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> Solidworks
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"> Creo
-                                    </td>
-                                </tr>-->
+    							</tr>  								
                             </table>
                         </div>
                     </div>
@@ -198,8 +180,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                
+                </div>               
                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -243,8 +224,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                
+                </div>                
                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -266,8 +246,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                
+                </div>                
                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -312,8 +291,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                
+                </div>                
                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -336,9 +314,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                
-                
+                </div>                            
                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -361,8 +337,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                
+                </div>                
                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -379,19 +354,41 @@
     								<td>
     									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
     								</td>
-    							</tr>
-                            
-                                
+    							</tr>                                                            
                             </table>
                         </div>
                     </div>
-                </div>
-                
-                
+                </div>                                
             </div>
         </div>
+        <!-- Tech Skills END -->
+
+        <!-- Previous employer START-->
+        <div class="col-sm-4 col-md-4">
+            <div class="panel-group" id="accordion2">
+                <div class="panel panel-default">                    
+                        <div class="panel-body">
+                            <table>                            
+                                <tr ng-repeat="x in previousEmployer">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>                                
+                            </table>
+                        </div>                    
+                </div>                                                                                                              
+            </div>
+
+            <div ng-show="customKey">            
+                <input type="text" placeholder="Single Custom Keyword" ng-model="customKeyword">
+                <button ng-click="appendKeyword()">Add to list</button>            
+            </div>
+        </div>
+        <!-- Previous employer END -->
+
       	</div>
       	
+        <!-- Single Custom keyword -->
       	<div class="row" ng-show="customKey">
 			<div class="col-md-3">
 				<input type="text" placeholder="Single Custom Keyword" ng-model="customKeyword">
@@ -409,6 +406,7 @@
 	    
 	    <!--{{data}}
 	    {{data1}}-->
+
 	</div>
 	
 	<div class="row" ng-show="resumeList">
