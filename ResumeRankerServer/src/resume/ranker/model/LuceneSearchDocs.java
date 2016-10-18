@@ -53,7 +53,6 @@ public class LuceneSearchDocs {
 		String index = PathConfigurations.INDEX_RESUME;
 		String field = "contents";
 		String queries = null;
-		int repeat = 0;
 		boolean raw = false;
 		String queryString = null;
 		int hitsPerPage = 10;
@@ -70,9 +69,14 @@ public class LuceneSearchDocs {
 		}
 		QueryParser parser = new QueryParser(field, analyzer);
 
-		String[] line = search.getSkill();
-		QueryBuilder obj = new QueryBuilder();
-		String formattedQuery = obj.orQuery(line);
+		String[] skill = search.getSkill();
+		String[] previousEmployer = search.getPreviousEmployer();
+		
+		QueryBuilder queryBuilder = new QueryBuilder();
+		String[] combined = new String[2];
+		combined[0] = queryBuilder.orQuery(skill);
+		combined[1] = queryBuilder.orQuery(previousEmployer);
+		String formattedQuery = queryBuilder.andQuery(combined);
 		Query query = null;
 		try {
 			query = parser.parse(formattedQuery);

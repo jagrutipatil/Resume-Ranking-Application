@@ -7,10 +7,11 @@ exports.SearchResume = function(req, res){
 	var client = new Client();
 	
 	var DesriredSkills = req.param("skill");
+	var previousEmployer = req.param("previousEmployer");
 	
 	// set content-type header and data as json in args parameter 
 	var args = {
-		data: { "skill": DesriredSkills },
+		data: { "skill": DesriredSkills,  "previousEmployer" : previousEmployer},
 		headers: { "Content-Type": "application/json" }
 	};
 	 

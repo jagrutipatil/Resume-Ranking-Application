@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class SearchParameters {
 
 	private String[] skill;
+	private String[] previousEmployer;
 	
 	private int id;
 
@@ -15,9 +16,10 @@ public class SearchParameters {
 		super();
 	}
 
-	public SearchParameters(String[] skill, int id) {
+	public SearchParameters(String[] skill, String[] previousEmployer, int id) {
 		super();
 		this.skill = skill;
+		this.previousEmployer = previousEmployer;
 		this.id = id;
 	}
 
@@ -27,6 +29,14 @@ public class SearchParameters {
 
 	public void setSkill(String[] skill) {
 		this.skill = skill;
+	}
+	
+	public String[] getPreviousEmployer() {
+		return previousEmployer;
+	}
+
+	public void setPreviousEmployer(String[] previousEmployer) {
+		this.previousEmployer = previousEmployer;
 	}
 
 	public int getId() {
@@ -39,6 +49,6 @@ public class SearchParameters {
 
 	@Override
 	public String toString() {
-		return "SearchParameters [skill=" + Arrays.toString(skill) + ", id=" + id + "]";
+		return "SearchParameters [skill=" + Arrays.toString(skill) + " Previous Employer=" + Arrays.toString(previousEmployer) + ", id=" + id + "]";
 	}
 }

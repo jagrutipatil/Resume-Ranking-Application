@@ -23,7 +23,7 @@ public class QueryBuilder {
 		System.out.println(String.format(queryLog, andQuery.toString()));
 		return andQuery.toString();
 	}
-
+	
 	/**
 	 * TODO Add documentation
 	 */

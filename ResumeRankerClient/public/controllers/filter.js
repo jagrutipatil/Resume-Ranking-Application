@@ -14,6 +14,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	$scope.webDevelopment = ["amCharts", "Angular.js", "Backbone.js", "Bootstrap", "CSS", "Hibernate", "HTML", "JavaScript", "JSON", "JQuery", "Node.js", "PHP", "Rails", "REST", "ReactJS", "SOAP", "Spring", "Struts", "Tomcat", "XML"];
 	$scope.previousEmployer = ["Google", "Apple", "Facebook", "Amazon", "Uber"];
 	$scope.selected = [];
+	$scope.selectedEmployer = [];
 	
 	$scope.categories = true;
 	$scope.skills = true;
@@ -35,13 +36,34 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	  var action = (checkbox.checked ? 'add' : 'remove');
 	  updateSelected(action, id);
 	}; 	
-	
+
+
+	var updateSelectedPEmployer = function(action, id) {
+	  if (action === 'add' && $scope.selectedEmployer.indexOf(id) === -1) {
+	    $scope.selectedEmployer.push(id);
+	  }
+	  if (action === 'remove' && $scope.selectedEmployer.indexOf(id) !== -1) {
+	    $scope.selectedEmployer.splice($scope.selectedEmployer.indexOf(id), 1);
+	  }
+	};
+
+	$scope.updatePreviousEmployer = function($event, id) {
+	  var checkbox = $event.target;
+	  var action = (checkbox.checked ? 'add' : 'remove');
+	  updateSelectedPEmployer(action, id);
+	}; 		
+
 	$scope.appendKeyword = function(){
 		
 		$scope.selected.push($scope.customKeyword);
 		$scope.customKeyword = "";
 	};
 	
+	$scope.appendPEmployer = function(){
+		
+		$scope.selectedEmployer.push($scope.customKeywordEmployer);
+		$scope.customKeywordEmployer = "";
+	};
 	$scope.saveConfiguration = function(Name) {
 		
 		var CommaFormattedKeywords = "";
@@ -97,7 +119,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 			}
 		}*/
 
-		var keywords = {"skill": $scope.selected};
+		var keywords = {"skill": $scope.selected, "previousEmployer": $scope.selectedEmployer};
 
 		$scope.filesList = [];
 
