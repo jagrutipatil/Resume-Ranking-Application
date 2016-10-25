@@ -92,7 +92,9 @@ public class LuceneSearchDocs {
 
 		QueryParser parser = new QueryParser(field, analyzer);
 		Query query = null;
+//		SpanQuery query;
 		try {
+//			query = new SpanMultiTermQueryWrapper<RegexpQuery>(new RegexpQuery(new Term(buildQuery(search))));
 			query = parser.parse(buildQuery(search));
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -129,8 +131,9 @@ public class LuceneSearchDocs {
 		String formattedQuery = queryBuilder.orQueryList(list);
 
 		if (minGPA != 0)
-			formattedQuery = queryBuilder.andQuery(formattedQuery, "gpa[ " + minGPA + " TO " + maxGPA + "]");
-
+			formattedQuery = queryBuilder.andQuery(formattedQuery, "gpa[ " + minGPA + " TO " + maxGPA + "]");		
+		
 		return formattedQuery;
+//		return "\b(January|Jan|February|Feb|March|Mar|April|Apr|June|Jun|July|Jul|August|Aug|September|Sept|October|Oct|November|Dec|December) (19[7-9][0-9]|2[0-9][0-9][0-9]) - \b(January|Jan|February|Feb|March|Mar|April|Apr|June|Jun|July|Jul|August|Aug|September|Sept|October|Oct|November|Dec|December) (19[7-9][0-9]|2[0-9][0-9][0-9])";
 	}
 }

@@ -22,6 +22,11 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	$scope.searchButton = true;
 	$scope.resumeList = false;
 	
+	$scope.updateSkillAndEmpOP = function(operation) {
+	  $scope.opSKillEmp = operation;
+	  console.log($scope.opSKillEmp);
+	}; 	
+
 	var updateSelected = function(action, id) {
 	  if (action === 'add' && $scope.selected.indexOf(id) === -1) {
 	    $scope.selected.push(id);
@@ -37,7 +42,6 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	  updateSelected(action, id);
 	}; 	
 
-
 	var updateSelectedPEmployer = function(action, id) {
 	  if (action === 'add' && $scope.selectedEmployer.indexOf(id) === -1) {
 	    $scope.selectedEmployer.push(id);
@@ -52,6 +56,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	  var action = (checkbox.checked ? 'add' : 'remove');
 	  updateSelectedPEmployer(action, id);
 	}; 		
+
 
 	$scope.appendKeyword = function(){
 		
@@ -119,7 +124,13 @@ myApp.controller('filterController', function($scope, $http, $window) {
 			}
 		}*/
 
-		var keywords = {"skill": $scope.selected, "previousEmployer": $scope.selectedEmployer};
+		var keywords = {
+						 "skill": $scope.selected,
+		 				 "previousEmployer": $scope.selectedEmployer,
+		 				 "skill_op_emp" : $scope.opSKillEmp,
+		 				 "minGPA" : $scope.minGPA,
+		 				 "maxGPA" : $scope.maxGPA
+		 				};
 
 		$scope.filesList = [];
 
