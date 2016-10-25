@@ -8,7 +8,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -27,6 +29,25 @@ import resume.ranker.constants.PathConfigurations;
 
 public class LuceneSearchDocs {
 
+	public ArrayList<String> doRangeSearch(BufferedReader in, IndexSearcher searcher, Query query) throws IOException {
+
+		ArrayList<String> searchFiles = new ArrayList<String>();
+		TopDocs results = searcher.search(query, 10);
+		ScoreDoc[] hits = results.scoreDocs;
+
+		for (int i = 0; i < results.totalHits; i++) {
+			Document doc = searcher.doc(hits[i].doc);
+			String path = doc.get("path");
+			if (path != null)
+				System.out.println((i + 1) + ". " + path);
+
+			String name = doc.get("name");
+			searchFiles.add(name);
+		}
+
+		return searchFiles;
+	}
+
 	public ArrayList<String> doPagingSearch(BufferedReader in, IndexSearcher searcher, Query query, int hitsPerPage,
 			boolean raw, boolean interactive) throws IOException {
 
@@ -34,6 +55,7 @@ public class LuceneSearchDocs {
 
 		// Collect enough docs to show 5 pages
 		TopDocs results = searcher.search(query, 5 * hitsPerPage);
+
 		ScoreDoc[] hits = results.scoreDocs;
 
 		for (int i = 0; i < results.totalHits; i++) {
@@ -67,31 +89,48 @@ public class LuceneSearchDocs {
 		} else {
 			in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
 		}
-		QueryParser parser = new QueryParser(field, analyzer);
 
-		String[] skill = search.getSkill();
-		String[] previousEmployer = search.getPreviousEmployer();
-		
-		QueryBuilder queryBuilder = new QueryBuilder();
-		String[] combined = new String[2];
-		combined[0] = queryBuilder.orQuery(skill);
-		combined[1] = queryBuilder.orQuery(previousEmployer);
-		String formattedQuery = queryBuilder.andQuery(combined);
+		QueryParser parser = new QueryParser(field, analyzer);
 		Query query = null;
 		try {
-			query = parser.parse(formattedQuery);
+			query = parser.parse(buildQuery(search));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		ArrayList<String> files = doPagingSearch(in, searcher, query, hitsPerPage, raw,
 				queries == null && queryString == null);
-		reader.close();
 
-		files.toArray();
+		Set<String> set = new HashSet<String>();
+		set.addAll(files);
+		set.toArray();
 		Map<String, Object> filesMap = new HashMap<String, Object>();
-		filesMap.put("files", files);
+		filesMap.put("files", set);
 
 		return filesMap;
+	}
+
+	private String buildQuery(SearchParameters searchParams) {
+		String[] skill = searchParams.getSkill();
+		String[] previousEmployer = searchParams.getPreviousEmployer();
+		double minGPA = searchParams.getMinGPA();
+		double maxGPA = searchParams.getMaxGPA();
+
+		QueryBuilder queryBuilder = new QueryBuilder();
+		ArrayList<String> list = new ArrayList<String>();
+		StringBuilder stb = new StringBuilder();
+
+		if (skill.length != 0)
+			list.add(queryBuilder.orQuery(skill));
+
+		if (previousEmployer.length != 0)
+			list.add(queryBuilder.orQuery(previousEmployer));
+
+		String formattedQuery = queryBuilder.orQueryList(list);
+
+		if (minGPA != 0)
+			formattedQuery = queryBuilder.andQuery(formattedQuery, "gpa[ " + minGPA + " TO " + maxGPA + "]");
+
+		return formattedQuery;
 	}
 }

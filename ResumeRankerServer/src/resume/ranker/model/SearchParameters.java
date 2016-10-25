@@ -9,6 +9,9 @@ public class SearchParameters {
 
 	private String[] skill;
 	private String[] previousEmployer;
+
+	private double minGPA = 0;
+	private double maxGPA = 4;
 	
 	private int id;
 
@@ -45,6 +48,22 @@ public class SearchParameters {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public double getMinGPA() {
+		return minGPA;
+	}
+
+	public void setMinGPA(double minGPA) {
+		this.minGPA = minGPA;
+	}
+
+	public double getMaxGPA() {
+		return maxGPA;
+	}
+
+	public void setMaxGPA(double maxGPA) {
+		this.maxGPA = maxGPA;
 	}
 
 	@Override
