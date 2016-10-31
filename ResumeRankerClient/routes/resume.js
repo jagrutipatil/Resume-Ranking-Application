@@ -10,10 +10,18 @@ exports.SearchResume = function(req, res){
 	var previousEmployer = req.param("previousEmployer");
 	var minGPA = req.param("minGPA");
 	var maxGPA = req.param("maxGPA");
+	var masters = req.param("masters");
+	var bachlors = req.param("bachlors");
 	
 	// set content-type header and data as json in args parameter 
 	var args = {
-		data: { "skill": DesriredSkills,  "previousEmployer" : previousEmployer, "minGPA" : minGPA, "maxGPA" : maxGPA},
+		data: { "skill": DesriredSkills,  
+				"previousEmployer" : previousEmployer, 
+				"minGPA" : minGPA,
+				"maxGPA" : maxGPA,
+				"masters" : masters,
+				"bachlors" : bachlors
+			  },
 		headers: { "Content-Type": "application/json" }
 	};
 	 

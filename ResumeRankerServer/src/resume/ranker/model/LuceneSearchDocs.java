@@ -93,22 +93,25 @@ public class LuceneSearchDocs {
 		QueryParser parser = new QueryParser(field, analyzer);
 		Query query = null;
 //		SpanQuery query;
+		Map<String, Object> filesMap = new HashMap<String, Object>();
 		try {
 //			query = new SpanMultiTermQueryWrapper<RegexpQuery>(new RegexpQuery(new Term(buildQuery(search))));
-			query = parser.parse(buildQuery(search));
+			String strQuery = buildQuery(search);			
+			
+			if (strQuery != null && !strQuery.equals("")) {
+				query = parser.parse(strQuery);
+				ArrayList<String> files = null;
+				files = doPagingSearch(in, searcher, query, hitsPerPage, raw,
+						queries == null && queryString == null);
+				Set<String> set = new HashSet<String>();
+				set.addAll(files);
+				set.toArray();
+				filesMap.put("files", set);
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
-		ArrayList<String> files = doPagingSearch(in, searcher, query, hitsPerPage, raw,
-				queries == null && queryString == null);
-
-		Set<String> set = new HashSet<String>();
-		set.addAll(files);
-		set.toArray();
-		Map<String, Object> filesMap = new HashMap<String, Object>();
-		filesMap.put("files", set);
-
+		
 		return filesMap;
 	}
 
@@ -129,10 +132,19 @@ public class LuceneSearchDocs {
 			list.add(queryBuilder.orQuery(previousEmployer));
 
 		String formattedQuery = queryBuilder.orQueryList(list);
-
+		
 		if (minGPA != 0)
 			formattedQuery = queryBuilder.andQuery(formattedQuery, "gpa[ " + minGPA + " TO " + maxGPA + "]");		
 		
+		if (searchParams.isMasters()) {
+			formattedQuery = queryBuilder.andQuery(formattedQuery, queryBuilder.orQuery("M.S.", "Masters", "M.B.A", "Ph.D", "MS"));
+		}
+		
+		if (searchParams.isBachlors()) {
+			formattedQuery = queryBuilder.andQuery(formattedQuery, queryBuilder.orQuery("B.E.", "Bachelors", "B.S.", "BE"));
+		}
+		
+		System.out.println("Query: " + formattedQuery);
 		return formattedQuery;
 //		return "\b(January|Jan|February|Feb|March|Mar|April|Apr|June|Jun|July|Jul|August|Aug|September|Sept|October|Oct|November|Dec|December) (19[7-9][0-9]|2[0-9][0-9][0-9]) - \b(January|Jan|February|Feb|March|Mar|April|Apr|June|Jun|July|Jul|August|Aug|September|Sept|October|Oct|November|Dec|December) (19[7-9][0-9]|2[0-9][0-9][0-9])";
 	}

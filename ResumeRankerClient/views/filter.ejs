@@ -94,26 +94,21 @@
 	    <div class="row">
 	      	<!--<div class="col-sm-3 col-md-3">-->
 	            <div class="well">
+                    <!-- TODO Add space>
 	            	<!--<button type="button" class="btn btn-primary btn-block">Show Selection</button>-->
 	            	<span> SkillSet:</span>{{selected}}
                     <span> Previous Employer:</span>{{selectedEmployer}} 
+                    <span> Min GPA:</span>{{minGPA}} 
+                    <span> Max GPA:</span>{{maxGPA}} 
 	            </div>
 	        <!--</div>-->
         </div>
 	    
 	    <div class="row" ng-show="categories">
-	    	<div class="col-md-4"><div class="well"><button type="button" class="btn btn-primary btn-block">Tech Skills</button></div></div>
-	        
-            <div class="col-md-4"><div class="well"><button type="button" class="btn btn-success btn-block">Previous Employer</button></div></div>
-            
-	        <!--div class="col-md-4"><div class="well"><button type="button" class="btn btn-info btn-block">University</button></div></div-->
-	    </div>
-	    
-	    <div class="row" ng-show="skills">
-        <!-- Tech Skills START-->    
-        <div class="col-sm-4 col-md-4">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
+	    	<div class="col-md-4">
+                <div class="well"><button type="button" class="btn btn-primary btn-block">Tech Skills</button></div>
+                    <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
@@ -124,82 +119,82 @@
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in analysisSoftware">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>  								
+                                <tr ng-repeat="x in analysisSoftware">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>                               
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-folder-close">
-                            </span> CAD</a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-folder-close">
+                                    </span> CAD</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in cad">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in cad">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                                                             
                             </table>
-                        </div>
-                    </div>
-                </div>               
+                                </div>
+                            </div>
+                        </div>               
                 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-folder-close">
                             </span> CLOUD TECHNOLOGIES</a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
+                            </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in cloudTechnologies">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in cloudTechnologies">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                             
                             </table>
                         </div>
-                    </div>
-                </div>
+                            </div>
+                        </div>
                 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-folder-close">
                             </span> DATABASES</a>
                         </h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse">
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in databases">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in databases">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                             
                             </table>
                         </div>
-                    </div>
-                </div>                
+                        </div>
+                    </div>                
                 
-                <div class="panel panel-default">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-folder-close">
@@ -210,18 +205,18 @@
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in microControllers">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in microControllers">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                             
                             </table>
                         </div>
                     </div>
-                </div>                
+                    </div>                
                 
-                <div class="panel panel-default">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-folder-close">
@@ -232,18 +227,18 @@
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in operatingSystems">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in operatingSystems">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                             
                             </table>
                         </div>
                     </div>
-                </div>
+                    </div>
                 
-                <div class="panel panel-default">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"><span class="glyphicon glyphicon-folder-close">
@@ -254,19 +249,19 @@
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in other">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in other">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                             
                                 
                             </table>
                         </div>
                     </div>
-                </div>                
+                    </div>                
                 
-                <div class="panel panel-default">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><span class="glyphicon glyphicon-folder-close">
@@ -277,19 +272,19 @@
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in programmingLang">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in programmingLang">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                             
                                 
                             </table>
                         </div>
                     </div>
-                </div>                            
+                    </div>                            
                 
-                <div class="panel panel-default">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine"><span class="glyphicon glyphicon-folder-close">
@@ -300,19 +295,19 @@
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in tools">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>
+                                <tr ng-repeat="x in tools">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>
                             
                                 
                             </table>
                         </div>
                     </div>
-                </div>                
+                    </div>                
                 
-                <div class="panel panel-default">
+                    <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTen"><span class="glyphicon glyphicon-folder-close">
@@ -323,23 +318,45 @@
                         <div class="panel-body">
                             <table>
                             
-                            	<tr ng-repeat="x in webDevelopment">
-    								<td>
-    									<input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
-    								</td>
-    							</tr>                                                            
+                                <tr ng-repeat="x in webDevelopment">
+                                    <td>
+                                        <input type="checkbox" ng-click="updateSelection($event, x)"> {{x}}
+                                    </td>
+                                </tr>                                                            
                             </table>
                         </div>
                     </div>
-                </div>                                
+                    </div>                                
+                </div>                
             </div>
-        </div>
-        <!-- Tech Skills END -->
 
-        <!-- Previous employer START-->
-        <div class="col-sm-4 col-md-4">
-            <div class="panel-group" id="accordion2">
-                <div class="panel panel-default">                    
+            <!-- EXPERIENCE START-->
+            <div class="col-md-4">
+                <div class="well"><button type="button" class="btn btn-success btn-block"> Experience </button></div>
+                
+                <div class="panel-group" id="accordionEx1">
+                    <div class="panel panel-default">                                        
+                        <div class="panel-body">
+                            <table>                            
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" ng-click="enableExpereince()"> Expereinced
+                                    </td>
+                                </tr>                                
+                            </table>
+                        </div>                    
+                    </div>                                                                                                        
+                </div>
+
+                <div class="panel-group" id="accordion2" ng-show="experience">
+                    <div class="panel panel-default">  
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-parent="#accordion2"><span class="glyphicon glyphicon-folder-close">
+                                </span> PREVIOUS EMPLOYER</a>
+                            </h4>
+                        </div>
+                  
                         <div class="panel-body">
                             <table>                            
                                 <tr ng-repeat="x in previousEmployer">
@@ -349,18 +366,60 @@
                                 </tr>                                
                             </table>
                         </div>                    
-                </div>                                                                                                              
-            </div>
+                    </div>                                                                                                        
+                </div>
 
-            <div ng-show="customKey">            
-                <input type="text" placeholder="Single Custom Keyword" ng-model="customKeyword">
-                <button ng-click="appendKeyword()">Add to list</button>            
+                <div ng-show="experience">            
+                    <input type="text" placeholder="Single Custom Keyword" ng-model="customKeywordEmployer">
+                    <button ng-click="appendPEmployer()">Add to list</button>            
+                </div>                
             </div>
-        </div>
-        <!-- Previous employer END -->
+            <!-- EXPERIENCE END-->
 
-      	</div>
-      	
+	        <div class="col-md-4">
+                <div class="well"><button type="button" class="btn btn-info btn-block">EDUCATION</button></div>
+                <div class="panel-group" id="accordion4">
+                    <div class="panel panel-default">   
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-parent="#accordion4"> EDUCATION LEVEL </a>
+                            </h4>
+                        </div>            
+                        <div class="panel-body">
+                            <table>                            
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" ng-click="hasMasters($event)"> Masters <br/>
+                                        <input type="checkbox" ng-click="hasBachlors($event)">Bachlors                                        
+                                    </td>
+                                </tr>                                
+                            </table>
+                        </div>                    
+                    </div>                                                                                                        
+                </div>                
+                <div class="panel-group" id="accordion3">
+                    <div class="panel panel-default">   
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-parent="#accordion3"><span class="glyphicon glyphicon-folder-close">
+                                </span> GPA</a>
+                            </h4>
+                        </div>            
+                        <div class="panel-body">
+                            <table>                            
+                                <tr>
+                                    <td>
+                                        <label for="minGPA"> Min GPA: </label> <input type="text" ng-model="minGPA"> <br/>
+                                        <label for="maxGPA"> Max GPA: </label> <input type="text" ng-model="maxGPA">
+                                    </td>
+                                </tr>                                
+                            </table>
+                        </div>                    
+                    </div>                                                                                                        
+                </div>
+            </div>
+	    </div>
+	          	
         <!-- Single Custom keyword -->
       	<div class="row" ng-show="customKey">
 			<div class="col-md-3">
@@ -383,8 +442,7 @@
 		    </tbody>
 	  	</table>    
 	  
-	</div>    
-    
+	</div>        
 </div>
     
 

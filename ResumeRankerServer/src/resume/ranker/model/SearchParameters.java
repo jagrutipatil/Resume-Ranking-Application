@@ -12,6 +12,9 @@ public class SearchParameters {
 
 	private double minGPA = 0;
 	private double maxGPA = 4;
+		
+	private boolean masters;
+	private boolean bachlors;
 	
 	private int id;
 
@@ -64,6 +67,22 @@ public class SearchParameters {
 
 	public void setMaxGPA(double maxGPA) {
 		this.maxGPA = maxGPA;
+	}
+	
+	public boolean isMasters() {
+		return masters;
+	}
+
+	public void setMasters(boolean masters) {
+		this.masters = masters;
+	}
+
+	public boolean isBachlors() {
+		return bachlors;
+	}
+
+	public void setBachlors(boolean bachlors) {
+		this.bachlors = bachlors;
 	}
 
 	@Override

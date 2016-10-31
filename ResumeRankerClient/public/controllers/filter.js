@@ -51,12 +51,25 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	  }
 	};
 
+	$scope.enableExpereince = function() {
+		$scope.experience = !$scope.experience;
+	}
+
 	$scope.updatePreviousEmployer = function($event, id) {
 	  var checkbox = $event.target;
 	  var action = (checkbox.checked ? 'add' : 'remove');
 	  updateSelectedPEmployer(action, id);
 	}; 		
 
+	$scope.hasMasters = function($event) {
+		var checkbox = $event.target;
+		$scope.masters = checkbox.checked;
+	};
+
+	$scope.hasBachlors = function($event) {
+		var checkbox = $event.target;
+		$scope.bachlors = checkbox.checked;
+	};
 
 	$scope.appendKeyword = function(){
 		
@@ -114,37 +127,29 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	};
 	
 	$scope.search = function(){
-		//$scope.skills = false;
 		console.log("searching!!!");
-
-		//$scope.data1 = [];
-		/*for(var i in $scope.data) {
-			if($scope.data.hasOwnProperty(i) && !isNaN(+i)) {
-				$scope.data1[+i] = $scope.data[i].skill;
-			}
-		}*/
 
 		var keywords = {
 						 "skill": $scope.selected,
 		 				 "previousEmployer": $scope.selectedEmployer,
 		 				 "skill_op_emp" : $scope.opSKillEmp,
 		 				 "minGPA" : $scope.minGPA,
-		 				 "maxGPA" : $scope.maxGPA
+		 				 "maxGPA" : $scope.maxGPA,
+		 				 "masters" : $scope.masters,
+		 				 "bachlors" : $scope.bachlors
 		 				};
 
 		$scope.filesList = [];
 
 		$http.post("/SearchResume", keywords)
 		.success(function(data,status) {
-			if (status === 200)
-			{
+			if (status === 200) {
 				console.log("Success returned from searchResume Function");
 				console.log(data);
 				console.log(status);
 
 				var i = 0;
-
-				for (i=0; i<data.files.length; i++){
+				for (i=0; data.files != null && i<data.files.length; i++){
 					var fileDetails = {};
 					fileDetails["Name"] = data.files[i];
 					$scope.filesList.push(fileDetails);
@@ -156,13 +161,10 @@ myApp.controller('filterController', function($scope, $http, $window) {
 				$scope.searchButton = false;
 				$scope.resumeList = true;
 				
-			}
-			else
-			{
+			} else {
 				console.log("Error returned from searchResume Function");
 			}
 		});
-
 	};
 	
 
