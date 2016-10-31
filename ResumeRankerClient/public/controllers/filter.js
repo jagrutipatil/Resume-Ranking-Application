@@ -12,7 +12,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	$scope.programmingLang = ["C++", "C#", "Java", "Pyhton", "Ruby", "Scala", "SQL"];
 	$scope.tools = ["Ant", "Git", "Jenkins", "JIRA", "JProfiler", "SVN"];
 	$scope.webDevelopment = ["amCharts", "Angular.js", "Backbone.js", "Bootstrap", "CSS", "Hibernate", "HTML", "JavaScript", "JSON", "JQuery", "Node.js", "PHP", "Rails", "REST", "ReactJS", "SOAP", "Spring", "Struts", "Tomcat", "XML"];
-	$scope.previousEmployer = ["Google", "Apple", "Facebook", "Amazon", "Uber"];
+	$scope.previousEmployer = ["Google", "Apple", "Facebook", "Amazon", "Uber", "Tesla" , "Cisco", "Paypal"];
 	$scope.selected = [];
 	$scope.selectedEmployer = [];
 	
