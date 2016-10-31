@@ -25,6 +25,7 @@ import org.apache.lucene.search.MultiPhraseQuery;
 import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 
@@ -57,7 +58,7 @@ public class LuceneSearchDocs {
 		ArrayList<String> searchFiles = new ArrayList<String>();
 
 		// Collect enough docs to show 5 pages
-		TopDocs results = searcher.search(query, 5 * hitsPerPage);
+		TopDocs results = searcher.search(query, 5 * hitsPerPage, Sort.RELEVANCE);
 
 		ScoreDoc[] hits = results.scoreDocs;
 
