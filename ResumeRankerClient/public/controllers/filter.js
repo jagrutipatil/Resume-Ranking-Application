@@ -136,7 +136,8 @@ myApp.controller('filterController', function($scope, $http, $window) {
 		 				 "minGPA" : $scope.minGPA,
 		 				 "maxGPA" : $scope.maxGPA,
 		 				 "masters" : $scope.masters,
-		 				 "bachlors" : $scope.bachlors
+		 				 "bachlors" : $scope.bachlors,
+		 				 "experience": $scope.experience
 		 				};
 
 		$scope.filesList = [];

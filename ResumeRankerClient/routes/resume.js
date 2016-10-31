@@ -12,6 +12,7 @@ exports.SearchResume = function(req, res){
 	var maxGPA = req.param("maxGPA");
 	var masters = req.param("masters");
 	var bachlors = req.param("bachlors");
+	var experience = req.param("experience");
 	
 	// set content-type header and data as json in args parameter 
 	var args = {
@@ -20,7 +21,8 @@ exports.SearchResume = function(req, res){
 				"minGPA" : minGPA,
 				"maxGPA" : maxGPA,
 				"masters" : masters,
-				"bachlors" : bachlors
+				"bachlors" : bachlors,
+				"experience" : experience
 			  },
 		headers: { "Content-Type": "application/json" }
 	};

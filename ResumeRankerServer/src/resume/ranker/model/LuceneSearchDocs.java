@@ -17,9 +17,12 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MultiPhraseQuery;
+import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
@@ -98,16 +101,33 @@ public class LuceneSearchDocs {
 //			query = new SpanMultiTermQueryWrapper<RegexpQuery>(new RegexpQuery(new Term(buildQuery(search))));
 			String strQuery = buildQuery(search);			
 			
+			MultiPhraseQuery multiPhraseQuery = new MultiPhraseQuery();
+			Set<String> set = new HashSet<String>();			
+			
+			if (search.isExperience()) {
+//				multiPhraseQuery.add(new Term[] {new Term(field, "previous"), new Term(field, ""), new Term(field, "past"), new Term(field, "earlier")});
+				multiPhraseQuery.add(new Term[] {new Term(field, "work"), new Term(field, "job"), new Term(field, "employment"), new Term(field, "professional"), new Term(field, "software"), new Term(field, "mechanical"), new Term(field, "engineering"), new Term(field, "full stack")});
+				multiPhraseQuery.add(new Term[] {new Term(field, "experience"), new Term(field, "projects"), new Term(field, "history"), new Term(field, "intern"), new Term(field, "engineer"), new Term(field, "developer")});
+				ArrayList<String> arrayList = null;
+				arrayList = doPagingSearch(in, searcher, multiPhraseQuery, hitsPerPage, raw,
+						queries == null && queryString == null);
+				set.addAll(arrayList);
+			}				
+
 			if (strQuery != null && !strQuery.equals("")) {
-				query = parser.parse(strQuery);
+				query = parser.parse(strQuery);												
 				ArrayList<String> files = null;
 				files = doPagingSearch(in, searcher, query, hitsPerPage, raw,
 						queries == null && queryString == null);
-				Set<String> set = new HashSet<String>();
+				
 				set.addAll(files);
 				set.toArray();
+			}			
+			
+			if (set.size() != 0) {
 				filesMap.put("files", set);
 			}
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -141,7 +161,7 @@ public class LuceneSearchDocs {
 		}
 		
 		if (searchParams.isBachlors()) {
-			formattedQuery = queryBuilder.andQuery(formattedQuery, queryBuilder.orQuery("B.E.", "Bachelors", "B.S.", "BE"));
+			formattedQuery = queryBuilder.andQuery(formattedQuery, queryBuilder.orQuery("B.E.", "Bachelor*", "B.S.", "graduation", "BE", "M.S.", "Masters", "M.B.A", "Ph.D", "MS", "university"));
 		}
 		
 		System.out.println("Query: " + formattedQuery);

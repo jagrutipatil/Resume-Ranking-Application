@@ -14,6 +14,7 @@ public class SearchParameters {
 	private double maxGPA = 4;
 		
 	private boolean masters;
+	private boolean experience;
 	private boolean bachlors;
 	
 	private int id;
@@ -83,6 +84,14 @@ public class SearchParameters {
 
 	public void setBachlors(boolean bachlors) {
 		this.bachlors = bachlors;
+	}
+	
+	public boolean isExperience() {
+		return experience;
+	}
+
+	public void setExperience(boolean experience) {
+		this.experience = experience;
 	}
 
 	@Override
