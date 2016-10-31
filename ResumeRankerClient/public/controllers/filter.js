@@ -21,7 +21,11 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	$scope.customKey = true;
 	$scope.searchButton = true;
 	$scope.resumeList = false;
-	
+
+	$scope.bachlorsText = "No";
+	$scope.mastersText = "No";
+	$scope.experienceText = "No";
+
 	$scope.updateSkillAndEmpOP = function(operation) {
 	  $scope.opSKillEmp = operation;
 	  console.log($scope.opSKillEmp);
@@ -53,6 +57,7 @@ myApp.controller('filterController', function($scope, $http, $window) {
 
 	$scope.enableExpereince = function() {
 		$scope.experience = !$scope.experience;
+		$scope.experienceText = ($scope.experience ? 'Yes' : 'No');
 	}
 
 	$scope.updatePreviousEmployer = function($event, id) {
@@ -64,11 +69,13 @@ myApp.controller('filterController', function($scope, $http, $window) {
 	$scope.hasMasters = function($event) {
 		var checkbox = $event.target;
 		$scope.masters = checkbox.checked;
+		$scope.mastersText = ($scope.masters ? 'Yes' : 'No');
 	};
 
 	$scope.hasBachlors = function($event) {
 		var checkbox = $event.target;
 		$scope.bachlors = checkbox.checked;
+		$scope.bachlorsText = ($scope.bachlors ? 'Yes' : 'No');
 	};
 
 	$scope.appendKeyword = function(){
